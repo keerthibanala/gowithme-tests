@@ -1,0 +1,32 @@
+---
+description: Rules for maintaining test documentation
+globs: docs/**/*.md
+alwaysApply: false
+---
+
+# Test Documentation Rules
+
+## docs/TEST-PLAN.md
+
+This is the single source of truth for all tests. It must be kept in sync with the actual test files.
+
+## When Adding Tests
+
+Every time a new test is added, you MUST:
+1. Add a row to the relevant table in `docs/TEST-PLAN.md` with: file name, test name, what it validates.
+2. Update the "Test Coverage Summary" totals at the bottom.
+3. Update the "Last updated" date.
+
+## When Removing or Modifying Tests
+
+1. Update or remove the corresponding row in the test plan table.
+2. Update coverage totals.
+3. Update the "Last updated" date.
+
+## Table Format
+
+```markdown
+| Test File | Test Name | What It Validates |
+|-----------|-----------|-------------------|
+| `file.spec.ts` | descriptive test name | Brief validation description |
+```

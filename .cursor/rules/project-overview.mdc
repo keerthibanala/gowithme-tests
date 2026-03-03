@@ -1,0 +1,24 @@
+---
+description: Project overview and conventions for GoWithMe Playwright test suite
+alwaysApply: true
+---
+
+# GoWithMe Test Project
+
+This is a Playwright E2E test suite for https://gowithme.app — a free platform connecting travelers with flight companions.
+
+## Project Structure
+
+- `src/pages/` — Page Object Models (POM). Every page gets its own class extending `BasePage`.
+- `src/fixtures/` — Playwright custom fixtures that inject page objects into tests.
+- `src/helpers/` — Shared utilities (constants, accessibility checks).
+- `tests/` — Test specs organized by feature: `smoke/`, `navigation/`, `discover/`, `auth/`.
+- `docs/TEST-PLAN.md` — Living documentation of all tests. Update this whenever tests are added or changed.
+
+## Key Conventions
+
+- Always use Page Object Model — never use raw selectors in test files.
+- Use custom fixtures from `src/fixtures/test.fixture.ts` instead of bare `@playwright/test`.
+- Prefer user-facing locators: `getByRole`, `getByText`, `getByLabel` over CSS/XPath.
+- Tests must be independent and not rely on execution order.
+- Every new test must be documented in `docs/TEST-PLAN.md`.

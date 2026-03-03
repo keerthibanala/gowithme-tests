@@ -1,0 +1,44 @@
+---
+description: Page Object Model conventions for the test framework
+globs: src/pages/**/*.ts
+alwaysApply: false
+---
+
+# Page Object Model Standards
+
+## Structure
+
+- Every page class must extend `BasePage` from `./base.page.ts`.
+- Define `readonly path: string` for the page URL path.
+- Declare all locators as `readonly` class properties in the constructor.
+- Use user-facing locators (`getByRole`, `getByText`, `getByLabel`).
+
+## Methods
+
+- Name action methods with verbs: `clickGetStarted()`, `searchRoute()`.
+- Name assertion methods with `expect` prefix: `expectHeroVisible()`, `expectPageLoaded()`.
+- Keep page objects free of test assertions that are test-specific — only include reusable assertions.
+
+## Example Pattern
+
+```typescript
+export class MyPage extends BasePage {
+  readonly path = '/my-page';
+  readonly heading: Locator;
+
+  constructor(page: Page) {
+    super(page);
+    this.heading = page.getByRole('heading', { name: /my page/i });
+  }
+
+  async expectPageLoaded() {
+    await expect(this.heading).toBeVisible();
+  }
+}
+```
+
+## Registration
+
+After creating a new page object:
+1. Export it from `src/pages/index.ts`.
+2. Add it as a fixture in `src/fixtures/test.fixture.ts`.

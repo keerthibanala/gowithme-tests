@@ -1,0 +1,35 @@
+---
+description: Playwright test writing standards and patterns
+globs: tests/**/*.spec.ts
+alwaysApply: false
+---
+
+# Playwright Test Standards
+
+## Writing Tests
+
+- Import `test` and `expect` from `../../src/fixtures/test.fixture.js` — NOT from `@playwright/test`.
+- Use descriptive `test.describe` blocks grouping related tests.
+- Use `test.beforeEach` for common setup (navigation, waiting for load).
+- Each test should validate one specific behavior.
+
+## Locator Strategy (priority order)
+
+1. `page.getByRole()` — buttons, links, headings
+2. `page.getByText()` — visible text content
+3. `page.getByLabel()` — form inputs
+4. `page.getByTestId()` — data-testid attributes
+5. CSS selectors — last resort only
+
+## Assertions
+
+- Use `expect(locator).toBeVisible()` over `isVisible()` checks.
+- Use `expect(page).toHaveURL()` for navigation assertions.
+- Use `expect(page).toHaveTitle()` for title checks.
+- Avoid hard-coded waits (`page.waitForTimeout`). Use `waitForLoadState` or locator assertions.
+
+## File Naming
+
+- Test files: `kebab-case.spec.ts`
+- Page objects: `kebab-case.page.ts`
+- One `.spec.ts` file per logical feature area.

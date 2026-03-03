@@ -1,0 +1,35 @@
+{
+  "name": "gowithme-tests",
+  "version": "1.0.0",
+  "description": "End-to-end Playwright tests for GoWithMe travel companion platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:smoke": "npx playwright test tests/smoke/",
+    "test:navigation": "npx playwright test tests/navigation/",
+    "test:discover": "npx playwright test tests/discover/",
+    "test:auth": "npx playwright test tests/auth/",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:mobile": "npx playwright test --project=mobile-chrome",
+    "test:headed": "npx playwright test --headed",
+    "test:debug": "npx playwright test --debug",
+    "test:ui": "npx playwright test --ui",
+    "report": "npx playwright show-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keerthibanala/gowithme-tests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/keerthibanala/gowithme-tests/issues"
+  },
+  "homepage": "https://github.com/keerthibanala/gowithme-tests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}
